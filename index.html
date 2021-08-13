@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DCA Example</title>
+    <script src="https://cdn.plot.ly/plotly-2.3.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/4cc4863a81.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="btn-open-options"><i class="fas fa-bars"></i></button>
+    <div id="graph-div"></div>
+    <div id="input-modal" class="modal-displayed">
+      <div class="modal-content">
+        <div class="modal-top-bar">
+          <h2>Options</h2>
+          <button type="button" class="btn-close hidden" aria-label="Close">
+            <i class="fas fa-times fa-lg"></i>
+          </button>
+        </div>
+        <form id="modal-form">
+          <div class="form-div">
+            <label for="coin-dropdown">Coin</label>
+            <select
+              name="coin"
+              id="coin-dropdown"
+              class="modal-form-element"
+              required
+            >
+              <option value="bitcoin">Bitcoin</option>
+              <option value="ethereum">Ethereum</option>
+              <option value="dogecoin">Dogecoin</option>
+              <option value="monero">Monero</option>
+            </select>
+          </div>
+          <div class="form-div">
+            <label for="currency-dropdown">Currency</label>
+            <select
+              name="currency"
+              id="currency-dropdown"
+              class="modal-form-element"
+              required
+            >
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="JPY">JPY</option>
+            </select>
+          </div>
+          <div class="form-div">
+            <label for="deposit-input">Deposit Amount</label>
+            <input
+              name="deposit"
+              id="deposit-input"
+              class="modal-form-element"
+              type="number"
+              min="0"
+              step="1"
+              value="100"
+              required
+            />
+          </div>
+          <div class="form-div">
+            <label for="startdate-input">Start Date</label>
+            <input
+              name="startDate"
+              id="startdate-input"
+              class="modal-form-element"
+              type="date"
+              value="2018-01-10"
+              required
+            />
+          </div>
+          <div class="form-div">
+            <label for="frequency-dropdown">Frequency of Deposits</label>
+            <select
+              name="frequency"
+              id="frequency-dropdown"
+              class="modal-form-element"
+              required
+            >
+              <option value="1">1 Week</option>
+              <option value="2">2 Weeks</option>
+              <option value="4">4 Weeks</option>
+            </select>
+          </div>
+          <button type="submit" id="btn-submit">Submit</button>
+        </form>
+        <p id="error-message"></p>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
