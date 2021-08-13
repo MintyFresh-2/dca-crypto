@@ -45,8 +45,6 @@ modalForm.addEventListener("submit", () => {
         fetchedData = true;
 
         let avgBuy = {
-          // x: ["2013-10-4", "2013-10-5", "2013-10-6", "2013-10-7"],
-          // y: [10, 15, 13, 17],
           x: [],
           y: [],
           name: "Average Buy",
@@ -59,8 +57,6 @@ modalForm.addEventListener("submit", () => {
         }
 
         let bulkBuy = {
-          // x: ["2013-10-4", "2013-10-5", "2013-10-6", "2013-10-7"],
-          // y: [16, 5, 11, 9],
           x: [],
           y: [],
           name: "Bulk Buy",
@@ -72,8 +68,29 @@ modalForm.addEventListener("submit", () => {
           bulkBuy.y.push(data.single_buy_portfolio[date]);
         }
 
+        let invested = {
+          x: [],
+          y: [],
+          name: "Invested",
+          type: "scatter",
+        };
+
+        let investedRunningTotal = 0;
+        let days = 0;
+
+        for (const date in data.single_buy_portfolio) {
+          if (days % Number(requestData.frequency * 7) === 0) {
+            investedRunningTotal += Number(requestData.deposit);
+          }
+          days++;
+          invested.x.push(date);
+          invested.y.push(investedRunningTotal);
+        }
+
+        console.log(invested);
+
         let layout = {
-          colorway: ["#33cc66", "#33CCB3"],
+          colorway: ["#bbbbbb", "#33cc66", "#33CCB3"],
           title: {
             text: "Dollar Cost Averaging vs Bulk Buying",
             font: {
@@ -99,7 +116,7 @@ modalForm.addEventListener("submit", () => {
           },
         };
 
-        var plotData = [avgBuy, bulkBuy];
+        var plotData = [invested, avgBuy, bulkBuy];
         Plotly.newPlot(graphDiv, plotData, layout, {
           responsive: true,
           displayModeBar: false,
